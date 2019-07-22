@@ -103,7 +103,8 @@ public class PhantomjsTool {
         }
         String js = PhantomJsSupport.getPath();
         write(file, js);
-        if (!new File(TMP_JS).canExecute()) {
+        File tmp = new File(TMP_JS);
+        if (!tmp.exists() || !tmp.canRead() || !tmp.canWrite() || !tmp.canExecute()) {
             throw new NoPermissionException("文件无执行权限");
         }
     }
